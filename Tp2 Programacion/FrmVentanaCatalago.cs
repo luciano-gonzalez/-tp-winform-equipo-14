@@ -19,7 +19,8 @@ namespace Tp2_Programacion
 
         private void FrmVentanaCatalago_Load(object sender, EventArgs e)
         {
-
+            ArticulosDatos datos = new ArticulosDatos();
+            DgbArticulos.DataSource = datos.listar();
         }
 
         private void agregarArticuloToolStripMenuItem_Click(object sender, EventArgs e)
@@ -28,6 +29,11 @@ namespace Tp2_Programacion
         }
 
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void DgbArticulos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

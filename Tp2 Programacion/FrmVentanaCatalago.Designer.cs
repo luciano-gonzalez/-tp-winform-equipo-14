@@ -92,6 +92,7 @@
             this.DgbArticulos.Name = "DgbArticulos";
             this.DgbArticulos.Size = new System.Drawing.Size(525, 291);
             this.DgbArticulos.TabIndex = 1;
+            this.DgbArticulos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgbArticulos_CellContentClick);
             // 
             // FrmVentanaCatalago
             // 

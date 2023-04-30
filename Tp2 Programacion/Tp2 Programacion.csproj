@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArticulosDatos.cs" />
     <Compile Include="Artículo.cs" />
     <Compile Include="Categoria.cs" />
     <Compile Include="FrmVentanaCatalago.cs">
