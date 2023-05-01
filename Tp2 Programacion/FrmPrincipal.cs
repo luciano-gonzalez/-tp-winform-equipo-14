@@ -17,6 +17,15 @@ namespace Tp2_Programacion
             InitializeComponent();
         }
 
-      
+        private void FrmPrincipal_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonVerCatalogo_Click(object sender, EventArgs e)
+        {
+            FrmVentanaCatalago ventana = new FrmVentanaCatalago();
+            ventana.ShowDialog();
+        }
     }
 }

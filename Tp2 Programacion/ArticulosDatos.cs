@@ -22,7 +22,7 @@ namespace Tp2_Programacion
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true";
                 comando.CommandType=System.Data.CommandType.Text;
-                comando.CommandText = "select codigo,Nombre,precio, IdMarca, IdCategoria from ARTICULOS ";
+                comando.CommandText = "SELECT a.id,a.Codigo,a.Descripcion,a.Nombre,c.Descripcion as 'Categoria', m.Descripcion as 'Marca', a.Precio from ARTICULOS a inner join categorias c on c.Id = a.IdCategoria INNER join MARCAS m on m.Id = a.IdMarca ";
                 comando.Connection = conexion;
 
                 conexion.Open();
@@ -32,10 +32,10 @@ namespace Tp2_Programacion
                     Artículo aux = new Artículo();
                     aux._marca = new Marca();
                     aux._categoria = new Categoria();
-                    aux._codArticulo = (string)lector["codigo"];
-                    aux._nombre = (string)lector["Nombre"];
-                    aux._marca._idMarca= (int)lector["IdMarca"];
-                    aux._categoria._idCategoria = (int)lector["IdCategoria"];
+                    aux._codArticulo = (string)lector["a.Codigo"];
+                    aux._nombre = (string)lector["a.Nombre"];
+                    aux._marca._nombre= (string)lector["m.Descripcion"];
+                    aux._categoria._descripcion = (string)lector["c.Descripcion"];
                     //aux._precio = lector.GetInt32(2);
 
                     lista.Add(aux);

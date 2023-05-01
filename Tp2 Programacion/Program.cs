@@ -16,7 +16,7 @@ namespace Tp2_Programacion
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmVentanaCatalago());
+            Application.Run(new FrmPrincipal());
         }
     }
 }

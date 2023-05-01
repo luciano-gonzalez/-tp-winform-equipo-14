@@ -1,6 +1,6 @@
 ﻿namespace Tp2_Programacion
 {
-    partial class FrmPrincipal
+    partial class Form1
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.lblTitulo = new System.Windows.Forms.Label();
-            this.btnvercatalogo = new System.Windows.Forms.Button();
+            this.buttonVerCatalogo = new System.Windows.Forms.Button();
             this.buttonSalir = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -46,16 +46,15 @@
             this.lblTitulo.TabIndex = 0;
             this.lblTitulo.Text = "GESTOR DE ARTÍCULOS";
             // 
-            // btnvercatalogo
+            // buttonVerCatalogo
             // 
-            this.btnvercatalogo.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnvercatalogo.Location = new System.Drawing.Point(356, 199);
-            this.btnvercatalogo.Name = "btnvercatalogo";
-            this.btnvercatalogo.Size = new System.Drawing.Size(289, 44);
-            this.btnvercatalogo.TabIndex = 1;
-            this.btnvercatalogo.Text = "VER CATÁLOGO";
-            this.btnvercatalogo.UseVisualStyleBackColor = true;
-            this.btnvercatalogo.Click += new System.EventHandler(this.buttonVerCatalogo_Click);
+            this.buttonVerCatalogo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.buttonVerCatalogo.Location = new System.Drawing.Point(356, 199);
+            this.buttonVerCatalogo.Name = "buttonVerCatalogo";
+            this.buttonVerCatalogo.Size = new System.Drawing.Size(289, 44);
+            this.buttonVerCatalogo.TabIndex = 1;
+            this.buttonVerCatalogo.Text = "VER CATÁLOGO";
+            this.buttonVerCatalogo.UseVisualStyleBackColor = true;
             // 
             // buttonSalir
             // 
@@ -67,18 +66,17 @@
             this.buttonSalir.Text = "SALIR";
             this.buttonSalir.UseVisualStyleBackColor = true;
             // 
-            // FrmPrincipal
+            // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(1092, 467);
             this.Controls.Add(this.buttonSalir);
-            this.Controls.Add(this.btnvercatalogo);
+            this.Controls.Add(this.buttonVerCatalogo);
             this.Controls.Add(this.lblTitulo);
-            this.Name = "FrmPrincipal";
+            this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.FrmPrincipal_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -87,7 +85,7 @@
         #endregion
 
         private System.Windows.Forms.Label lblTitulo;
-        private System.Windows.Forms.Button btnvercatalogo;
+        private System.Windows.Forms.Button buttonVerCatalogo;
         private System.Windows.Forms.Button buttonSalir;
     }
 }

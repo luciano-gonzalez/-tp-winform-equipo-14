@@ -38,5 +38,10 @@ namespace Tp2_Programacion
 
         }
 
+        private void TsmModificar_Click(object sender, EventArgs e)
+        {
+            frmVentanaModificar modificar = new frmVentanaModificar();
+            modificar.ShowDialog();
+        }
     }
 }
