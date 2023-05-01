@@ -19,7 +19,7 @@ namespace Tp2_Programacion
 
         private void FrmVentanaCatalago_Load(object sender, EventArgs e)
         {
-            ArticulosDatos datos = new ArticulosDatos();
+            ConexionTabla datos = new ConexionTabla();
             DgbArticulos.DataSource = datos.listar();
         }
 
@@ -37,5 +37,6 @@ namespace Tp2_Programacion
         {
 
         }
+
     }
 }

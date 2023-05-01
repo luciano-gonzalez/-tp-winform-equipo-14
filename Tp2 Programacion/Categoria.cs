@@ -8,8 +8,18 @@ namespace Tp2_Programacion
 {
     internal class Categoria
     {
-        public int _codCategoria { get; set; }
+        public int _idCategoria { get; set; }
         public int _descripcion { get; set; }
 
+        public override string ToString()
+        {
+            string id = _idCategoria.ToString();
+            return id;
+        }
+
+        
+
     }
+
+    
 }

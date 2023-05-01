@@ -22,7 +22,7 @@ namespace Tp2_Programacion
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true";
                 comando.CommandType=System.Data.CommandType.Text;
-                comando.CommandText = "select codigo,Nombre,precio from ARTICULOS ";
+                comando.CommandText = "select codigo,Nombre,precio, IdMarca, IdCategoria from ARTICULOS ";
                 comando.Connection = conexion;
 
                 conexion.Open();
@@ -30,10 +30,12 @@ namespace Tp2_Programacion
 
                 while(lector.Read()) {
                     Artículo aux = new Artículo();
+                    aux._marca = new Marca();
+                    aux._categoria = new Categoria();
                     aux._codArticulo = (string)lector["codigo"];
                     aux._nombre = (string)lector["Nombre"];
-                    /*aux._marca = (Marca)lector["IdMarca"];
-                    aux._categoria = (Categoria)lector["IdCategoria"];*/
+                    aux._marca._idMarca= (int)lector["IdMarca"];
+                    aux._categoria._idCategoria = (int)lector["IdCategoria"];
                     //aux._precio = lector.GetInt32(2);
 
                     lista.Add(aux);

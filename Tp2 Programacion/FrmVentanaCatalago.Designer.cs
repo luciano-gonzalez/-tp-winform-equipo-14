@@ -55,6 +55,7 @@
             this.TsmModificar.Name = "TsmModificar";
             this.TsmModificar.Size = new System.Drawing.Size(184, 29);
             this.TsmModificar.Text = "Modificar Artículos";
+            this.TsmModificar.Click += new System.EventHandler(this.TsmModificar_Click);
             // 
             // TsmEliminar
             // 
@@ -88,9 +89,9 @@
             // DgbArticulos
             // 
             this.DgbArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgbArticulos.Location = new System.Drawing.Point(113, 77);
+            this.DgbArticulos.Location = new System.Drawing.Point(128, 81);
             this.DgbArticulos.Name = "DgbArticulos";
-            this.DgbArticulos.Size = new System.Drawing.Size(525, 291);
+            this.DgbArticulos.Size = new System.Drawing.Size(337, 187);
             this.DgbArticulos.TabIndex = 1;
             this.DgbArticulos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgbArticulos_CellContentClick);
             // 

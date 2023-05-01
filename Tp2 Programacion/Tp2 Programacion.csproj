@@ -49,6 +49,7 @@
     <Compile Include="ArticulosDatos.cs" />
     <Compile Include="Artículo.cs" />
     <Compile Include="Categoria.cs" />
+    <Compile Include="ConexionTabla.cs" />
     <Compile Include="FrmVentanaCatalago.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -56,16 +57,17 @@
       <DependentUpon>FrmVentanaCatalago.cs</DependentUpon>
     </Compile>
     <Compile Include="Marca.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="FrmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FrmPrincipal.Designer.cs">
+      <DependentUpon>FrmPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Tabla.cs" />
+    <EmbeddedResource Include="FrmPrincipal.resx">
+      <DependentUpon>FrmPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmVentanaCatalago.resx">
       <DependentUpon>FrmVentanaCatalago.cs</DependentUpon>

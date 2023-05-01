@@ -8,8 +8,14 @@ namespace Tp2_Programacion
 {
     internal class Marca
     {
-        public int _codMarca { get; set; }
+        public int _idMarca { get; set; }
         public string _nombre { get; set; }
+
+        public override string ToString()
+        {
+            string id = _idMarca.ToString();
+            return id;
+        }
 
     }
 }
