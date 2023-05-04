@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace Tp2_Programacion
 {
-    internal class Marca
+    public class Marca
     {
         public int _idMarca { get; set; }
         public string _nombre { get; set; }
 
         public override string ToString()
         {
-            string id = _idMarca.ToString();
-            return id;
+            return _nombre;
         }
 
     }

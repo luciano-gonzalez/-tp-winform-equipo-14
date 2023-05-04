@@ -19,13 +19,14 @@ namespace Tp2_Programacion
 
         private void FrmVentanaCatalago_Load(object sender, EventArgs e)
         {
-            ConexionTabla datos = new ConexionTabla();
+            ArticulosNegocio datos = new ArticulosNegocio();
             DgbArticulos.DataSource = datos.listar();
         }
 
         private void agregarArticuloToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            FrmAgregarArticulo ventana = new FrmAgregarArticulo();
+            ventana.ShowDialog();
         }
 
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
