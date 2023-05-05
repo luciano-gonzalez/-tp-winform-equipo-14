@@ -8,6 +8,7 @@ namespace Tp2_Programacion
 {
     public class Articulo
     {
+        public int ID { get; set; }
         public string _codArticulo { get; set; }
         public string _descripcion { get; set; }
         public string _nombre { get; set; }

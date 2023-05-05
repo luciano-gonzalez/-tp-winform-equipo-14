@@ -64,6 +64,7 @@
             this.TsmEliminar.Name = "TsmEliminar";
             this.TsmEliminar.Size = new System.Drawing.Size(172, 29);
             this.TsmEliminar.Text = "Eliminar Artículos";
+            this.TsmEliminar.Click += new System.EventHandler(this.TsmEliminar_Click);
             // 
             // TsmBusqueda
             // 
@@ -89,11 +90,10 @@
             // DgbArticulos
             // 
             this.DgbArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgbArticulos.Location = new System.Drawing.Point(128, 81);
+            this.DgbArticulos.Location = new System.Drawing.Point(47, 93);
             this.DgbArticulos.Name = "DgbArticulos";
             this.DgbArticulos.Size = new System.Drawing.Size(584, 187);
             this.DgbArticulos.TabIndex = 1;
-            this.DgbArticulos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgbArticulos_CellContentClick);
             // 
             // FrmVentanaCatalago
             // 

@@ -21,6 +21,7 @@ namespace Tp2_Programacion
         {
             ArticulosNegocio datos = new ArticulosNegocio();
             DgbArticulos.DataSource = datos.listar();
+            Text = "Modificar Articulo";
         }
 
         private void agregarArticuloToolStripMenuItem_Click(object sender, EventArgs e)
@@ -34,15 +35,34 @@ namespace Tp2_Programacion
 
         }
 
-        private void DgbArticulos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+      
 
         private void TsmModificar_Click(object sender, EventArgs e)
         {
-            frmVentanaModificar modificar = new frmVentanaModificar();
+            Articulo seleccionado;
+            seleccionado = (Articulo)DgbArticulos.CurrentRow.DataBoundItem;
+            FrmAgregarArticulo modificar = new FrmAgregarArticulo(seleccionado);
             modificar.ShowDialog();
+        }
+
+        private void TsmEliminar_Click(object sender, EventArgs e)
+        {
+            ArticulosNegocio negocio = new ArticulosNegocio();
+            Articulo seleccionado;
+            try
+            {
+                DialogResult respuesta = MessageBox.Show("Desea eliminar el articulo definitivamente?", "Eliminando", MessageBoxButtons.YesNo, MessageBoxIcon.Warning );
+                if (respuesta == DialogResult.Yes)
+                {
+                    seleccionado = (Articulo)DgbArticulos.CurrentRow.DataBoundItem;
+                    negocio.Eliminar(seleccionado.ID);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }

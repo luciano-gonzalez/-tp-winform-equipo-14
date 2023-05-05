@@ -16,20 +16,23 @@ namespace Tp2_Programacion
 
             try
             {
-                datos.setearConsulta("SELECT a.id,a.Codigo,a.Descripcion,a.Nombre,c.Descripcion as 'Categoria', m.Descripcion as 'Marca', a.Precio from ARTICULOS a inner join categorias c on c.Id = a.IdCategoria INNER join MARCAS m on m.Id = a.IdMarca ");
+                datos.setearConsulta("SELECT a.id,a.Codigo,a.Descripcion, a.Nombre,c.Id as 'idCategoria',c.Descripcion as 'Categoria',m.Id as 'idMarca', m.Descripcion as 'Marca', a.Precio from ARTICULOS a\r\ninner join categorias c on c.Id = a.IdCategoria\r\nINNER join MARCAS m on m.Id = a.IdMarca");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
                     Articulo aux = new Articulo();
+                    aux.ID = (int)datos.Lector["id"];
                     aux._codArticulo = (string)datos.Lector["Codigo"];
                     aux._nombre = (string)datos.Lector["Nombre"];
                     aux._descripcion = (string)datos.Lector["Descripcion"];
                     aux._marca = new Marca();
                     aux._marca._nombre = (string)datos.Lector["Marca"];
+                    aux._marca._idMarca = (int)datos.Lector["idMarca"];
                     aux._categoria = new Categoria();
                     aux._categoria._descripcion = (string)datos.Lector["Categoria"];
-                    aux._precio = (float)datos.Lector.GetDecimal(6);
+                    aux._categoria._idCategoria = (int)datos.Lector["idCategoria"];
+                    aux._precio = (float)datos.Lector.GetDecimal(8);
 
                     lista.Add(aux);
                 }
@@ -140,6 +143,46 @@ namespace Tp2_Programacion
 			{
 				datos.cerrarConexion();
 			}
+        }
+
+        public void Modificar(Articulo modificado)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("update ARTICULOS set  Codigo = @codArticulo, Nombre = @nombre, Descripcion = @descripcion, IdMarca= @idMarca,IdCategoria = @idCategoria, Precio =@precio where Id= @id");
+                datos.setearParametro("@codArticulo", modificado._codArticulo);
+                datos.setearParametro("@nombre", modificado._nombre);
+                datos.setearParametro("@descripcion", modificado._descripcion);
+                datos.setearParametro("@idMarca",modificado._marca._idMarca);
+                datos.setearParametro("@idCategoria", modificado._categoria._idCategoria);
+                datos.setearParametro("@precio", modificado._precio);
+                datos.setearParametro("@id", modificado.ID);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { datos.cerrarConexion();}
+        }
+
+        public void Eliminar(int idEliminado)
+        {
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearConsulta("delete from ARTICULOS where id=@id");
+                datos.setearParametro("@id", idEliminado);
+                datos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }
