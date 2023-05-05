@@ -66,6 +66,7 @@
             this.buttonSalir.TabIndex = 2;
             this.buttonSalir.Text = "SALIR";
             this.buttonSalir.UseVisualStyleBackColor = true;
+            this.buttonSalir.Click += new System.EventHandler(this.buttonSalir_Click);
             // 
             // FrmPrincipal
             // 

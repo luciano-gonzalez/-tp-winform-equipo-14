@@ -34,6 +34,9 @@
             this.TsmBusqueda = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.DgbArticulos = new System.Windows.Forms.DataGridView();
+            this.lblFiltrar = new System.Windows.Forms.Label();
+            this.txtfiltro = new System.Windows.Forms.TextBox();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgbArticulos)).BeginInit();
             this.SuspendLayout();
@@ -95,11 +98,40 @@
             this.DgbArticulos.Size = new System.Drawing.Size(584, 187);
             this.DgbArticulos.TabIndex = 1;
             // 
+            // lblFiltrar
+            // 
+            this.lblFiltrar.AutoSize = true;
+            this.lblFiltrar.Location = new System.Drawing.Point(44, 287);
+            this.lblFiltrar.Name = "lblFiltrar";
+            this.lblFiltrar.Size = new System.Drawing.Size(29, 13);
+            this.lblFiltrar.TabIndex = 2;
+            this.lblFiltrar.Text = "Filtro";
+            // 
+            // txtfiltro
+            // 
+            this.txtfiltro.Location = new System.Drawing.Point(79, 284);
+            this.txtfiltro.Name = "txtfiltro";
+            this.txtfiltro.Size = new System.Drawing.Size(100, 20);
+            this.txtfiltro.TabIndex = 3;
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.Location = new System.Drawing.Point(185, 284);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscar.TabIndex = 4;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            // 
             // FrmVentanaCatalago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(758, 448);
+            this.Controls.Add(this.btnBuscar);
+            this.Controls.Add(this.txtfiltro);
+            this.Controls.Add(this.lblFiltrar);
             this.Controls.Add(this.DgbArticulos);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -122,5 +154,8 @@
         private System.Windows.Forms.ToolStripMenuItem TsmBusqueda;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.DataGridView DgbArticulos;
+        private System.Windows.Forms.Label lblFiltrar;
+        private System.Windows.Forms.TextBox txtfiltro;
+        private System.Windows.Forms.Button btnBuscar;
     }
 }

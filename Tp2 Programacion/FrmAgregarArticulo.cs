@@ -59,11 +59,16 @@ namespace Tp2_Programacion
                 }
                 Close();
             }
+            catch (FormatException ex)
+            {
+                MessageBox.Show("En la sección de precio,Solamente se permiten números, intente nuevamente. ");
+            }
             catch (Exception ex)
             {
 
                 MessageBox.Show(ex.ToString());
             }
+            
         }
 
         private void FrmAgregarArticulo_Load(object sender, EventArgs e)

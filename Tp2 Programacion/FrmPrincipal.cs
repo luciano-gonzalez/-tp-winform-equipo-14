@@ -27,5 +27,10 @@ namespace Tp2_Programacion
             FrmVentanaCatalago ventana = new FrmVentanaCatalago();
             ventana.ShowDialog();
         }
+
+        private void buttonSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

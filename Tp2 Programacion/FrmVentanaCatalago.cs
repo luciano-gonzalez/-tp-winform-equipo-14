@@ -17,25 +17,30 @@ namespace Tp2_Programacion
             InitializeComponent();
         }
 
+        private List<Articulo> listaArticulos;
         private void FrmVentanaCatalago_Load(object sender, EventArgs e)
         {
+            cargar();
+            
+        }
+
+        private void cargar()
+        {
             ArticulosNegocio datos = new ArticulosNegocio();
-            DgbArticulos.DataSource = datos.listar();
+
+            listaArticulos = datos.listar(); ;
+            DgbArticulos.DataSource = listaArticulos ;
             Text = "Modificar Articulo";
+
+
         }
 
         private void agregarArticuloToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmAgregarArticulo ventana = new FrmAgregarArticulo();
             ventana.ShowDialog();
+            cargar();
         }
-
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-      
 
         private void TsmModificar_Click(object sender, EventArgs e)
         {
@@ -43,6 +48,8 @@ namespace Tp2_Programacion
             seleccionado = (Articulo)DgbArticulos.CurrentRow.DataBoundItem;
             FrmAgregarArticulo modificar = new FrmAgregarArticulo(seleccionado);
             modificar.ShowDialog();
+            cargar();
+
         }
 
         private void TsmEliminar_Click(object sender, EventArgs e)
@@ -63,6 +70,26 @@ namespace Tp2_Programacion
 
                 MessageBox.Show(ex.ToString());
             }
+            cargar();
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            List<Articulo> listafiltrada;
+            string filtro = txtfiltro.Text;
+            if (filtro != " ")
+            {
+                listafiltrada = listaArticulos.FindAll(x => x._nombre.ToUpper().Contains(txtfiltro.Text.ToUpper()));
+            }
+            else
+            {
+                listafiltrada = listaArticulos;
+            }
+
+
+            DgbArticulos.DataSource = null;
+            DgbArticulos.DataSource = listafiltrada;
+            
         }
     }
 }
