@@ -75,11 +75,21 @@ namespace Tp2_Programacion
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            
+            
+        }
+
+        private void txtfiltro_KeyPress(object sender, KeyPressEventArgs e) 
+        {
             List<Articulo> listafiltrada;
             string filtro = txtfiltro.Text;
             if (filtro != " ")
             {
-                listafiltrada = listaArticulos.FindAll(x => x._nombre.ToUpper().Contains(txtfiltro.Text.ToUpper()));
+                //listafiltrada = listaArticulos.FindAll(x => x._nombre.ToUpper().Contains(txtfiltro.Text.ToUpper()));
+                //listafiltrada = listaArticulos.FindAll(x => x._categoria._descripcion.ToUpper().Contains(txtfiltro.Text.ToUpper()));
+                //listafiltrada = listaArticulos.FindAll(x => x._descripcion.ToUpper().Contains(txtfiltro.Text.ToUpper()));
+                listafiltrada = listaArticulos.FindAll(x => x._marca._nombre.ToUpper().Contains(txtfiltro.Text.ToUpper()));
+
             }
             else
             {
@@ -89,7 +99,7 @@ namespace Tp2_Programacion
 
             DgbArticulos.DataSource = null;
             DgbArticulos.DataSource = listafiltrada;
-            
+
         }
     }
 }
