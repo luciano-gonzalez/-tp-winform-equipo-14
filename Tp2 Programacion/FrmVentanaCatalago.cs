@@ -21,7 +21,7 @@ namespace Tp2_Programacion
         private void FrmVentanaCatalago_Load(object sender, EventArgs e)
         {
             cargar();
-            
+
         }
 
         private void cargar()
@@ -30,6 +30,11 @@ namespace Tp2_Programacion
 
             listaArticulos = datos.listar(); ;
             DgbArticulos.DataSource = listaArticulos ;
+            DgbArticulos.Columns["_codArticulo"].Visible = false;
+            DgbArticulos.Columns["_descripcion"].Visible = false;
+            DgbArticulos.Columns["_categoria"].Visible = false;
+            DgbArticulos.Columns["_marca"].Visible = false;
+            DgbArticulos.Columns["_precio"].Visible = false;
             Text = "Modificar Articulo";
 
 
@@ -100,6 +105,17 @@ namespace Tp2_Programacion
             DgbArticulos.DataSource = null;
             DgbArticulos.DataSource = listafiltrada;
 
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void btnDetalles_Click(object sender, EventArgs e)
+        {
+            FrmVerDetalles ventanaDetalles = new FrmVerDetalles();
+            ventanaDetalles.ShowDialog();
         }
     }
 }
