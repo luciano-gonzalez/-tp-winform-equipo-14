@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 
-namespace Tp2_Programacion
+namespace Dominio
 {
     public class Articulo
     {

@@ -4,21 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tp2_Programacion
+namespace Dominio
 {
-    public class Categoria
+    public class Marca
     {
-        public int _idCategoria { get; set; }
-        public string _descripcion { get; set; }
+        public int _idMarca { get; set; }
+        public string _nombre { get; set; }
 
         public override string ToString()
         {
-            return _descripcion;
+            return _nombre;
         }
 
-        
-
     }
-
-    
 }

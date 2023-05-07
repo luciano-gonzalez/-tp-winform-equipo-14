@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using Dominio;
+using System.Runtime.InteropServices;
 
 namespace Tp2_Programacion
 {
@@ -16,7 +18,7 @@ namespace Tp2_Programacion
 
             try
             {
-                datos.setearConsulta("SELECT a.id,a.Codigo,a.Descripcion, a.Nombre,c.Id as 'idCategoria',c.Descripcion as 'Categoria',m.Id as 'idMarca', m.Descripcion as 'Marca', a.Precio from ARTICULOS a\r\ninner join categorias c on c.Id = a.IdCategoria\r\nINNER join MARCAS m on m.Id = a.IdMarca");
+                datos.setearConsulta("SELECT a.id,a.Codigo,a.Descripcion, a.Nombre,c.Id as 'idCategoria',c.Descripcion as 'Categoria',m.Id as 'idMarca', m.Descripcion as 'Marca', a.Precio from ARTICULOS a inner join categorias c on c.Id = a.IdCategoria INNER join MARCAS m on m.Id = a.IdMarca");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -184,5 +186,74 @@ namespace Tp2_Programacion
                 throw;
             }
         }
+
+        public List<Articulo> filtrar(string campo, string criterio, string filtro)
+        {
+            List<Articulo> lista = new List<Articulo>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                string consulta = "SELECT a.id,a.Codigo,a.Descripcion, a.Nombre,c.Id as 'idCategoria',c.Descripcion as 'Categoria',m.Id as 'idMarca', m.Descripcion as 'Marca', a.Precio from ARTICULOS a inner join categorias c on c.Id = a.IdCategoria INNER join MARCAS m on m.Id = a.IdMarca And ";
+                if (campo == "ID") {
+                    switch (criterio)
+                    {
+                        case "Mayor a":
+                            consulta += "ID > " + filtro;
+                            break;
+                        case "Menor a":
+                            consulta += "ID < " + filtro;
+                            break;
+                        case "Igual a":
+                            consulta += "ID = " + filtro;
+                            break;
+                    }
+                }
+                else if(campo == "Nombre")
+                {
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consulta += "Nombre like '" + filtro + "%' ";
+                            break;
+                        case "Termina con":
+                            consulta += "Nombre like '%" + filtro + "'";
+                            break;
+                        case "Contiene":
+                            consulta += "Nombre like '%" + filtro + "%'";
+                            break;
+                    }
+                }
+
+
+
+                datos.setearConsulta(consulta);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Articulo aux = new Articulo();
+                    aux.ID = (int)datos.Lector["id"];
+                    aux._codArticulo = (string)datos.Lector["Codigo"];
+                    aux._nombre = (string)datos.Lector["Nombre"];
+                    aux._descripcion = (string)datos.Lector["Descripcion"];
+                    aux._marca = new Marca();
+                    aux._marca._nombre = (string)datos.Lector["Marca"];
+                    aux._marca._idMarca = (int)datos.Lector["idMarca"];
+                    aux._categoria = new Categoria();
+                    aux._categoria._descripcion = (string)datos.Lector["Categoria"];
+                    aux._categoria._idCategoria = (int)datos.Lector["idCategoria"];
+                    aux._precio = (float)datos.Lector.GetDecimal(8);
+
+                    lista.Add(aux);
+                }
+                
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
     }
 }

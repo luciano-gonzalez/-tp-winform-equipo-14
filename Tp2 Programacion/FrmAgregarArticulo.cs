@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Dominio;
+using Negocio;
 
 namespace Tp2_Programacion
 {
@@ -100,6 +102,11 @@ namespace Tp2_Programacion
 
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void cboMarca_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

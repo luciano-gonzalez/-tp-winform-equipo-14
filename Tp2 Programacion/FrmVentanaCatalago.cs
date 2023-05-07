@@ -7,21 +7,65 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Dominio;
+using Negocio;
 
 namespace Tp2_Programacion
 {
     public partial class FrmVentanaCatalago : Form
     {
+        private List<Articulo> listaArticulos;
         public FrmVentanaCatalago()
         {
             InitializeComponent();
         }
 
-        private List<Articulo> listaArticulos;
         private void FrmVentanaCatalago_Load(object sender, EventArgs e)
         {
             cargar();
+            cboCampo.Items.Add("ID");
+            cboCampo.Items.Add("Nombre");
+        }
+            
+            
+        private bool validarfiltro()
+        {
+            if (cboCampo.SelectedIndex < 0)
+            {
+                MessageBox.Show("por favor,seleccione el campo para filtrar.");
+                return true;
+            }
+            if (cboCriterio.SelectedIndex < 0)
+            {
+                MessageBox.Show("por favor,seleccione el criterio para filtrar.");
+                return true;
+            }
+            if (cboCampo.SelectedItem.ToString()=="ID")
+            {
+                if (string.IsNullOrEmpty(txtfiltroavanzado.Text))
+                {
+                    MessageBox.Show("Debes cargar el filtro para numéricos...");
+                    return true;
+                }
+                if (!(solonumeros(txtfiltroavanzado.Text)))
+                {
+                    MessageBox.Show("solo numeros para filtrar por un campo numerico.");
+                    return true;
 
+                }
+            }
+            
+            return false;
+        }
+
+        private bool solonumeros(string cadena)
+        {
+            foreach (char caracter in cadena)
+            {
+                if (!(char.IsNumber(caracter)))
+                    return false;
+            }
+            return true;
         }
 
         private void cargar()
@@ -37,6 +81,16 @@ namespace Tp2_Programacion
             DgbArticulos.Columns["_precio"].Visible = false;
             Text = "Modificar Articulo";
 
+
+        }
+
+        private void ocultarcolumnas()
+        {
+            DgbArticulos.Columns["_codArticulo"].Visible = false;
+            DgbArticulos.Columns["_descripcion"].Visible = false;
+            DgbArticulos.Columns["_categoria"].Visible = false;
+            DgbArticulos.Columns["_marca"].Visible = false;
+            DgbArticulos.Columns["_precio"].Visible = false;
 
         }
 
@@ -78,23 +132,42 @@ namespace Tp2_Programacion
             cargar();
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private void btnDetalles_Click(object sender, EventArgs e)
         {
-            
-            
+           try
+            {
+                
+
+                if (txtfiltro.Text == " ")
+                {
+                    MessageBox.Show("la celda se encuentra vacia, intente nuevamente.");
+                }
+                else
+                {
+                    FrmVerDetalles ventanaDetalles = new FrmVerDetalles();
+                    ventanaDetalles.ShowDialog();
+                }
+                
+                
+                
+            }
+            catch (Exception ex)
+            {
+                
+                MessageBox.Show(ex.ToString());
+               
+            }
         }
 
-        private void txtfiltro_KeyPress(object sender, KeyPressEventArgs e) 
+            
+
+        private void txtfiltro_TextChanged(object sender, EventArgs e)
         {
             List<Articulo> listafiltrada;
             string filtro = txtfiltro.Text;
             if (filtro != " ")
             {
-                //listafiltrada = listaArticulos.FindAll(x => x._nombre.ToUpper().Contains(txtfiltro.Text.ToUpper()));
-                //listafiltrada = listaArticulos.FindAll(x => x._categoria._descripcion.ToUpper().Contains(txtfiltro.Text.ToUpper()));
-                //listafiltrada = listaArticulos.FindAll(x => x._descripcion.ToUpper().Contains(txtfiltro.Text.ToUpper()));
-                listafiltrada = listaArticulos.FindAll(x => x._marca._nombre.ToUpper().Contains(txtfiltro.Text.ToUpper()));
-
+                listafiltrada = listaArticulos.FindAll(x => x._nombre.ToUpper().Contains(txtfiltro.Text.ToUpper()));
             }
             else
             {
@@ -104,18 +177,58 @@ namespace Tp2_Programacion
 
             DgbArticulos.DataSource = null;
             DgbArticulos.DataSource = listafiltrada;
+            ocultarcolumnas();
+            
+        }
+
+        private void cboCampo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string opcion = cboCampo.SelectedItem.ToString();
+            if (opcion == "ID")
+            {
+                cboCriterio.Items.Clear();
+                cboCriterio.Items.Add("Mayor a");
+                cboCriterio.Items.Add("Menor a");
+                cboCriterio.Items.Add("Igual a");
+            }
+            else 
+            {
+                cboCriterio.Items.Clear();
+                cboCriterio.Items.Add("Comienza con");
+                cboCriterio.Items.Add("Termina con");
+                cboCriterio.Items.Add("Contiene");
+            }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            ArticulosNegocio negocio = new ArticulosNegocio();
+            try
+            {
+                if (validarfiltro()) 
+                    return;
+                
+                string campo = cboCampo.SelectedItem.ToString();
+                string criterio = cboCriterio.SelectedItem.ToString();
+                string filtro = txtfiltroavanzado.Text;
+                DgbArticulos.DataSource = negocio.filtrar(campo, criterio, filtro);
+                
+                
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("caca");
+                MessageBox.Show(ex.ToString());
+                
+            }
+            
 
         }
 
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void lblFiltrar_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void btnDetalles_Click(object sender, EventArgs e)
-        {
-            FrmVerDetalles ventanaDetalles = new FrmVerDetalles();
-            ventanaDetalles.ShowDialog();
         }
     }
 }

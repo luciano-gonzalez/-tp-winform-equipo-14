@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Dominio;
+using Negocio;
 
 namespace Tp2_Programacion
 {
@@ -15,6 +17,16 @@ namespace Tp2_Programacion
         public FrmVerDetalles()
         {
             InitializeComponent();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FrmVerDetalles_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
