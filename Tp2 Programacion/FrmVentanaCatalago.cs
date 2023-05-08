@@ -218,7 +218,7 @@ namespace Tp2_Programacion
             }
             catch (Exception ex)
             {
-                MessageBox.Show("caca");
+                
                 MessageBox.Show(ex.ToString());
                 
             }
