@@ -133,7 +133,7 @@ namespace Tp2_Programacion
         }
 
         private void btnDetalles_Click(object sender, EventArgs e)
-        {
+        { 
            try
             {
                 
@@ -144,7 +144,9 @@ namespace Tp2_Programacion
                 }
                 else
                 {
-                    FrmVerDetalles ventanaDetalles = new FrmVerDetalles();
+                    Articulo articulo;
+                    articulo = (Articulo)DgbArticulos.CurrentRow.DataBoundItem;
+                    FrmVerDetalles ventanaDetalles = new FrmVerDetalles(articulo);
                     ventanaDetalles.ShowDialog();
                 }
                 
