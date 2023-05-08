@@ -198,13 +198,13 @@ namespace Tp2_Programacion
                     switch (criterio)
                     {
                         case "Mayor a":
-                            consulta += "ID > " + filtro;
+                            consulta += "a.id > " + filtro;
                             break;
                         case "Menor a":
-                            consulta += "ID < " + filtro;
+                            consulta += "a.id < " + filtro;
                             break;
                         case "Igual a":
-                            consulta += "ID = " + filtro;
+                            consulta += "a.id = " + filtro;
                             break;
                     }
                 }
